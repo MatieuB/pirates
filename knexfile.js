@@ -2,14 +2,10 @@
 
 module.exports = {
   development: {
-    client: 'pg',
-    connection: 'postgres://localhost/pirates',
-    pool: {
-      min:2,
-      max: 10
-    }
+    client: 'postgresql',
+    connection: 'postgres://localhost/pirates'
   },
   seeds: {
-    directory: './seeds/'
+    directory: '/seeds/'
   }
 };

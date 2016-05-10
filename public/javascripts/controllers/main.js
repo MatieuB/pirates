@@ -1,9 +1,11 @@
 angular.module('Pirates')
-  .controller('PCtrl',['$scope','$log',function($scope,$log) {
+  .controller('PCtrl',['$scope','$log','$http','PiratesService',function($scope,$log,$http,PiratesService) {
 
     $scope.hello = 'am i here?'
-    $scope.test = function() {
-      $log.info('Tests?????')
 
-    }
+    PiratesService.all().then(function(pirates){
+      $scope.pirates = pirates
+      $log.info('herefdafdf',   $scope.pirates)
+    })
+
   }])

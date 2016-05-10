@@ -26,13 +26,15 @@
 <script src="javascripts/app.js"></script>
 
 <!-- Controllers -->
-  <script src="javascripts/controllers/main.js"></script>
-  <base href="/">
+<script src="javascripts/controllers/main.js"></script>
 
-<!-- Directives -->
+<base href="/">
+<link rel="stylesheet" href="stylesheets/style.css">
+
+<!-- Views -->
 <!-- <script src="directives/main_directive.js"></script> -->
 <!-- Services -->
-<!-- <script src="public/javascripts/services/main_service.js"></script> -->
+<script src="services/pirate_service.js"></script>
   <title>Pirates</title>
 </head>
 <body ng-controller="PCtrl">
@@ -45,12 +47,21 @@
       </div>
     </div>
   </nav>
-  {{1+4}}
+  {{pirates.pirates}}
+  <div ng-repeat="pirate in pirates">
+
+    <h3>{{pirate.name}}</h3>
+    <p>accessory: {{pirate.accessory}}</p>
+    <p>poison: {{pirate.poison}}</p>
+    <img ng-src="{{pirate.image_url}}" alt="pirate">
+
+  </div>
 
 <p ng-bind="hello"></p>
-<p ng-bind="test()"></p>
-<a href="/pirates">check out pirates</a>
+
 <div ng-view></div>
+
+
 
 </body>
 </html>
