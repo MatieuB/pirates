@@ -26,14 +26,16 @@
 <script src="javascripts/app.js"></script>
 
 <!-- Controllers -->
-<!-- <script src="public/javascripts/controllers/main_controller.js"></script> -->
+  <script src="javascripts/controllers/main.js"></script>
+  <base href="/">
+
 <!-- Directives -->
 <!-- <script src="directives/main_directive.js"></script> -->
 <!-- Services -->
 <!-- <script src="public/javascripts/services/main_service.js"></script> -->
   <title>Pirates</title>
 </head>
-<body>
+<body ng-controller="PCtrl">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -43,8 +45,12 @@
       </div>
     </div>
   </nav>
-
   {{1+4}}
+
+<p ng-bind="hello"></p>
+<p ng-bind="test()"></p>
+<a href="/pirates">check out pirates</a>
+<div ng-view></div>
 
 </body>
 </html>
