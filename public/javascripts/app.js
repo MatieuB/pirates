@@ -1,4 +1,4 @@
-angular.module('Pirates',['ngRoute'])
+angular.module('Pirates',['ngRoute','ngResource'])
 
 .config(function($routeProvider,  $locationProvider) {
   $routeProvider

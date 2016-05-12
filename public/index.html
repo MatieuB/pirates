@@ -22,6 +22,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <!-- load angular-moment -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+<!-- load angular-resource -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
 <!-- Instantiate Module -->
 <script src="javascripts/app.js"></script>
 
@@ -47,13 +49,35 @@
       </div>
     </div>
   </nav>
-  {{pirates.pirates}}
+  <div>
+    <form name='pirate_form'  ng-submit="formSubmit()" class='form-group'>
+      <label for="">Name</label>
+      <input name='name' type="text" ng-model="formData.name">
+
+      <label for="">Poison</label>
+      <input name='poison' type="text" ng-model="formData.poison">
+
+      <label for="">Accessory</label>
+      <input name='accessory' type="text" ng-model="formData.accessory">
+
+      <label for="">Image URL</label>
+      <input name='image_url' type="text" ng-model="formData.image_url">
+
+      <input type="submit">
+
+    </form>
+  </div>
   <div ng-repeat="pirate in pirates">
 
     <h3>{{pirate.name}}</h3>
     <p>accessory: {{pirate.accessory}}</p>
     <p>poison: {{pirate.poison}}</p>
     <img ng-src="{{pirate.image_url}}" alt="pirate">
+    <button ng-click="deletePirate(pirate)" class="btn btn-danger">Walk the Plank</button>
+
+    <p>
+      id: {{pirate.id}}
+    </p>
 
   </div>
 
