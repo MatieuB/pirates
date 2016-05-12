@@ -5,7 +5,7 @@ angular.module('Pirates')
 
   PiratesService.all().then(function(pirates){
     $scope.pirates = pirates
-    $log.info('here',   $scope.pirates)
+    $log.info('here', $scope.pirates)
   })
 
   $scope.formSubmit = function () {
@@ -13,7 +13,8 @@ angular.module('Pirates')
     $scope.formData = {};
 
     PiratesService.addPirate(newPirate).then(function(newPirate){
-      $scope.addToPirates(newPirate.data[0]);
+      $log.info(newPirate)
+      $scope.pirates.push(newPirate.data[0]);
 
        });
 
@@ -38,9 +39,16 @@ angular.module('Pirates')
     })
   }
 
-  $scope.editPirate = function (pirate) {
-    $log.info('id',pirate)
-    PiratesService.editPirate(pirate.id).then(function(){
+}])
+.controller('EditCtrl',function ($scope,$routeParams,$log,PiratesService,$location) {
+  // you have the id in $routeParams.id
+  PiratesService.getPirate($routeParams.id).then(function(pirate) {
+    $scope.myPirate = pirate.data[0];
+  })
+
+  $scope.editPirate = function () {
+    $log.info('id',$scope.myPirate)
+    PiratesService.editPirate($scope.myPirate).then(function(){
       $location.path('/')
     })
     // $rootScope.current = pirate;
@@ -56,7 +64,5 @@ angular.module('Pirates')
     //   $log.info($scope.pirates);
     // })
   }
-  $log.info('-----current-----',$rootScope.current)
 
-
-}])
+})

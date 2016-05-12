@@ -32,7 +32,7 @@ router.post('/pirates/add',function(req,res,next) {
   .insert(req.body)
   .returning('*')
   .then(function(newPirate) {
-    console.log(newPirates)
+    console.log(newPirate)
     res.json(newPirate)
   })
 })
@@ -48,8 +48,7 @@ router.put('/edit/pirate/:id', function(req,res,next) {
   // console.log('req.params.id======',req.params.id)
   // console.log(req);
   return knex('pirates')
-    .where({id:1})
-    .first()
+    .where({id:req.params.id})
     .update({
       name: req.body.name,
       poison: req.body.poison,
@@ -57,9 +56,9 @@ router.put('/edit/pirate/:id', function(req,res,next) {
       image_url: req.body.image_url
     })
     .returning('*')
-    .then(function(data){
-      console.log(data)
-      res.end()
+    .then(function(info){
+      console.log(info)
+      res.json(info[0])
     })
 
 })

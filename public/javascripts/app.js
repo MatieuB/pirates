@@ -7,7 +7,7 @@ angular.module('Pirates',['ngRoute','ngResource'])
     controller: 'PCtrl'
   }).when('/edit/pirate/:id', {
     templateUrl : 'views/edit_pirate.html',
-    controller: 'PCtrl'
+    controller: 'EditCtrl'
   }).when('/404', {
     template:'<h1>404 not found</h1>'
   }).otherwise({

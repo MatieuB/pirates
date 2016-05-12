@@ -12,9 +12,9 @@ angular.module('Pirates')
     deletePirate: function(id) {
       return $http.delete('/api/pirates/' + id)
     },
-    editPirate: function(id) {
-      
-      return $http.put('/api/edit/pirate/' + id)
+    editPirate: function(pirate) {
+
+      return $http.put('/api/edit/pirate/' +pirate.id , pirate)
     },
     getPirate: function(id) {
       return $http.get('/api/pirate/'+ id)
