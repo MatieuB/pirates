@@ -18,6 +18,15 @@ router.get('/pirates',function(req,res,next) {
     res.json(pirates)
   })
 })
+router.get('/pirate/:id',function(req,res,next) {
+  return knex('pirates')
+    .where('id',req.params.id)
+    .then(function(pirate) {
+      console.log('from the database======',pirate)
+      // var myPirate = pirate.data[0];
+      res.json(pirate);
+    })
+})
 router.post('/pirates/add',function(req,res,next) {
   return knex('pirates')
   .insert(req.body)
@@ -35,10 +44,18 @@ router.delete('/pirates/:id',function(req,res,next) {
       res.end()
     })
 })
-router.put('/pirates/:id', function(req,res,next) {
+router.put('/edit/pirate/:id', function(req,res,next) {
+  // console.log('req.params.id======',req.params.id)
+  // console.log(req);
   return knex('pirates')
-    .where('id',req.params.id)
-    .update(req.body)
+    .where({id:1})
+    .first()
+    .update({
+      name: req.body.name,
+      poison: req.body.poison,
+      accessory: req.body.accessory,
+      image_url: req.body.image_url
+    })
     .returning('*')
     .then(function(data){
       console.log(data)

@@ -1,5 +1,5 @@
 angular.module('Pirates')
-.controller('PCtrl',['$scope','$log','$http','PiratesService',function($scope,$log,$http,PiratesService) {
+.controller('PCtrl',['$scope','$log','$http','$rootScope','PiratesService',function($scope,$log,$http,$rootScope,PiratesService) {
   $scope._id
   $scope.formData = {}
 
@@ -22,23 +22,41 @@ angular.module('Pirates')
       $log.info('here',   $scope.pirates)
     });
   }
+
   $scope.deletePirate = function (pirate) {
-    $log.info(pirate)
+    // $log.info(pirate)
     PiratesService.deletePirate(pirate.id).then(function() {
       var index = $scope.pirates.indexOf(pirate);
       $scope.pirates.splice(index, 1);
       $log.info($scope.pirates);
     })
   }
-  $scope.editPirate = function (pirate) {
-    $log.info(pirate)
-    PiratesService.editPirate(pirate.id).then(function() {
-      var index = $scope.pirates.indexOf(pirate);
-      $scope.pirates.splice(index, 1);
-      $log.info($scope.pirates);
+  $scope.getPirate = function(pirate) {
+    PiratesService.getPirate(pirate.id).then(function(pirate) {
+      $rootScope.myPirate = pirate.data[0];
+      $log.info('=====myPirate=====',$rootScope.myPirate)
     })
   }
 
+  $scope.editPirate = function (pirate) {
+    $log.info('id',pirate)
+    PiratesService.editPirate(pirate.id).then(function(){
+      $location.path('/')
+    })
+    // $rootScope.current = pirate;
+    // $log.info('current======',$rootScope.current)
+    // $log.info('current==name====',$rootScope.current.name)
+    // $log.info('current==poison====',$rootScope.current.poison)
+    // $log.info('current===accessory===',$rootScope.current.accessory)
+    // $log.info('current===image===',$rootScope.current.image_url)
+
+    // PiratesService.editPirate(pirate.id).then(function() {
+    //   var index = $scope.pirates.indexOf(pirate);
+    //   $scope.pirates.splice(index, 1);
+    //   $log.info($scope.pirates);
+    // })
+  }
+  $log.info('-----current-----',$rootScope.current)
 
 
 }])

@@ -1,1 +1,54 @@
 <h1>Pirates</h1>
+<div>
+<form name='pirate_form'  ng-submit="formSubmit()" class='form-group'>
+  <label for="">Name</label>
+  <input name='name' type="text" ng-model="formData.name">
+
+  <label for="">Poison</label>
+  <input name='poison' type="text" ng-model="formData.poison">
+
+  <label for="">Accessory</label>
+  <input name='accessory' type="text" ng-model="formData.accessory">
+
+  <label for="">Image URL</label>
+  <input name='image_url' type="text" ng-model="formData.image_url">
+
+  <input type="submit">
+
+</form>
+</div>
+<!-- <div>
+    Edit Form Same page
+    <form name='edit_form'  ng-submit="formEdit()" class='form-group'>
+    <label for="">Name</label>
+    <input name='name' type="text"  value="{{current.name}}">
+
+    <label for="">Poison</label>
+    <input name='poison' type="text"  value="{{current.poison}}">
+
+    <label for="">Accessory</label>
+    <input name='accessory' type="text"  value="{{current.accessory}}">
+
+    <label for="">Image URL</label>
+    <input name='image_url' type="text"  value="{{current.image_url}}">
+
+    <input type="submit">
+
+  </form>
+</div> -->
+
+<div ng-repeat="pirate in pirates">
+
+  <h3>{{pirate.name}}</h3>
+  <p>accessory: {{pirate.accessory}}</p>
+  <p>poison: {{pirate.poison}}</p>
+  <img ng-src="{{pirate.image_url}}" alt="pirate">
+
+  <a href="/edit/pirate/{{pirate.id}}"><button ng-click="getPirate(pirate)" class="btn btn-primary">Edit this Pirate</button></a>
+  <button ng-click="deletePirate(pirate)" class="btn btn-danger">Walk the Plank</button>
+
+  <p>
+    id: {{pirate.id}}
+  </p>
+
+</div>
