@@ -14,24 +14,28 @@ angular.module('Pirates')
 
     PiratesService.addPirate(newPirate).then(function(newPirate){
       $scope.addToPirates(newPirate.data[0]);
-        // $scope.addToPirates = function (newPirate){
-        //   $scope.pirates.push(newPirate);
-        // }
-      });
+
+       });
 
     PiratesService.all().then(function(pirates) {
       $scope.pirates = pirates;
       $log.info('here',   $scope.pirates)
     });
   }
-
-
   $scope.deletePirate = function (pirate) {
     $log.info(pirate)
     PiratesService.deletePirate(pirate.id).then(function() {
       var index = $scope.pirates.indexOf(pirate);
       $scope.pirates.splice(index, 1);
-      $log.info($scope.pirates)
+      $log.info($scope.pirates);
+    })
+  }
+  $scope.editPirate = function (pirate) {
+    $log.info(pirate)
+    PiratesService.editPirate(pirate.id).then(function() {
+      var index = $scope.pirates.indexOf(pirate);
+      $scope.pirates.splice(index, 1);
+      $log.info($scope.pirates);
     })
   }
 

@@ -29,12 +29,22 @@ router.post('/pirates/add',function(req,res,next) {
 })
 router.delete('/pirates/:id',function(req,res,next) {
   return knex('pirates')
-  console.log(req,res,next)
-  .where({id:req.params.id})
-  .del()
-  .then(function() {
-    res.end()
-  })
+    .where({id:req.params.id})
+    .del()
+    .then(function() {
+      res.end()
+    })
+})
+router.put('/pirates/:id', function(req,res,next) {
+  return knex('pirates')
+    .where('id',req.params.id)
+    .update(req.body)
+    .returning('*')
+    .then(function(data){
+      console.log(data)
+      res.end()
+    })
+
 })
 
 module.exports = router;

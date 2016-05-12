@@ -11,6 +11,9 @@ angular.module('Pirates')
     },
     deletePirate: function(id) {
       return $http.delete('/api/pirates/' + id)
+    },
+    editPirate: function(id) {
+      return $http.put('/api/pirates/' + id)
     }
   }
 }])
