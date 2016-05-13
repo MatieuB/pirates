@@ -17,27 +17,8 @@
 
 </form>
 </div>
-<!-- <div>
-    Edit Form Same page
-    <form name='edit_form'  ng-submit="formEdit()" class='form-group'>
-    <label for="">Name</label>
-    <input name='name' type="text"  value="{{current.name}}">
 
-    <label for="">Poison</label>
-    <input name='poison' type="text"  value="{{current.poison}}">
-
-    <label for="">Accessory</label>
-    <input name='accessory' type="text"  value="{{current.accessory}}">
-
-    <label for="">Image URL</label>
-    <input name='image_url' type="text"  value="{{current.image_url}}">
-
-    <input type="submit">
-
-  </form>
-</div> -->
-
-<div ng-repeat="pirate in pirates">
+<div ng-repeat="pirate in pirates track by $index">
 
   <h3>{{pirate.name}}</h3>
   <p>accessory: {{pirate.accessory}}</p>

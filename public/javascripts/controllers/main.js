@@ -14,7 +14,7 @@ angular.module('Pirates')
 
     PiratesService.addPirate(newPirate).then(function(newPirate){
       $log.info(newPirate)
-      $scope.pirates.push(newPirate.data[0]);
+      $scope.pirates.unshift(newPirate.data[0]);
 
        });
 
@@ -40,29 +40,5 @@ angular.module('Pirates')
   }
 
 }])
-.controller('EditCtrl',function ($scope,$routeParams,$log,PiratesService,$location) {
-  // you have the id in $routeParams.id
-  PiratesService.getPirate($routeParams.id).then(function(pirate) {
-    $scope.myPirate = pirate.data[0];
-  })
 
-  $scope.editPirate = function () {
-    $log.info('id',$scope.myPirate)
-    PiratesService.editPirate($scope.myPirate).then(function(){
-      $location.path('/')
-    })
-    // $rootScope.current = pirate;
-    // $log.info('current======',$rootScope.current)
-    // $log.info('current==name====',$rootScope.current.name)
-    // $log.info('current==poison====',$rootScope.current.poison)
-    // $log.info('current===accessory===',$rootScope.current.accessory)
-    // $log.info('current===image===',$rootScope.current.image_url)
-
-    // PiratesService.editPirate(pirate.id).then(function() {
-    //   var index = $scope.pirates.indexOf(pirate);
-    //   $scope.pirates.splice(index, 1);
-    //   $log.info($scope.pirates);
-    // })
-  }
-
-})
+    

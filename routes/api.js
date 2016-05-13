@@ -23,7 +23,6 @@ router.get('/pirate/:id',function(req,res,next) {
     .where('id',req.params.id)
     .then(function(pirate) {
       console.log('from the database======',pirate)
-      // var myPirate = pirate.data[0];
       res.json(pirate);
     })
 })
@@ -45,8 +44,6 @@ router.delete('/pirates/:id',function(req,res,next) {
     })
 })
 router.put('/edit/pirate/:id', function(req,res,next) {
-  // console.log('req.params.id======',req.params.id)
-  // console.log(req);
   return knex('pirates')
     .where({id:req.params.id})
     .update({
@@ -56,11 +53,9 @@ router.put('/edit/pirate/:id', function(req,res,next) {
       image_url: req.body.image_url
     })
     .returning('*')
-    .then(function(info){
-      console.log(info)
-      res.json(info[0])
+    .then(function(){
+      res.end()
     })
-
 })
 
 module.exports = router;
