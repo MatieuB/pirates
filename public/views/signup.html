@@ -1,7 +1,19 @@
 <h1>SIGNUP MATeY</h1>
 <h2>How much did it cost the pirate to get his ear pieced</h2>
-<h1 ng-show=('vm.showRiddle')>A BUCKANEAR!</h1>
+<h1 ng-show='vm.showRiddle'>A BUCKANEAR!</h1>
+<button ng-click='showAnswer()'>show answer</button>
+<hr>
+<form novalidate ng-submit='formSubmit()'>
+  <fieldset>
+    <legend>Signup</legend>
 
-<fieldset>
-  <form ></form>
-</fieldset>
+    <label>Username</label>
+    <input type="text" name='username' ng-model='userForm.username' minlength='3' maxlength="20" required>
+    <label>Email</label>
+    <input type="text" name='email' ng-model='userForm.email' minlength='3' maxlength="20" required>
+    <label>Password</label>
+    <input type="password" name='password' ng-model='userForm.password' minlength='3' maxlength="20" required>
+    <input type="submit">
+
+  </fieldset>
+</form>

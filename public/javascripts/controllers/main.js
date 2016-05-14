@@ -1,6 +1,5 @@
 angular.module('Pirates')
 .controller('PCtrl',['$scope','$log','$http','$rootScope','PiratesService',function($scope,$log,$http,$rootScope,PiratesService) {
-  $scope._id
   $scope.formData = {}
 
   PiratesService.all().then(function(pirates){
@@ -40,5 +39,3 @@ angular.module('Pirates')
   }
 
 }])
-
-    
