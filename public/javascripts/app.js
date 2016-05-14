@@ -16,6 +16,10 @@ angular.module('Pirates',['ngRoute','ngResource'])
     templateUrl: 'views/signup.html',
     controller: 'SignupCtrl'
   })
+  .when('/login', {
+    templateUrl: 'views/login.html',
+    controller: 'LoginCtrl'
+  })
   .when('/404', {
     template:'<h1>404 not found</h1>'
   }).otherwise({
