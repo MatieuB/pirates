@@ -1,6 +1,6 @@
-(function() {
+// (function() {
 
-  'use strict';
+  // 'use strict';
 
   angular.module('Pirates',['ngRoute'])
 
@@ -9,20 +9,21 @@
 
     $routeProvider
     .when('/', {
-      templateUrl : 'views/pirates.html',
+      templateUrl: 'views/pirates.html',
+      resolve: {
+          theUser: function ($http,$log) {
+            return $http.get('/api/users/me')
+              .then(function (response) {
+                $log.info('from resolve',response.data)
+                if(response.data.error) {
+                  return null
+                }
+                return response.data
+              })
+
+          }
+        },
       controller: 'PCtrl'
-      // resolve: {
-      //     currentUser: function ($http) {
-      //       return $http.get('/api/users/me')
-      //         .then(function (response) {
-      //           if(response.data.error) {
-      //             return null
-      //           }
-      //           return response.data
-      //         })
-      //
-      //     }
-      //   }
     }).when('/edit/pirate/:id', {
       templateUrl : 'views/edit_pirate.html',
       controller: 'EditCtrl'
@@ -79,4 +80,4 @@
     })
 
 
-}());
+// }());

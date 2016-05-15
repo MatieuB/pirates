@@ -12,12 +12,12 @@ router.get('/users/me', function (req, res, next) {
 
     // IF it was expired - verify would actually throw an exception
     // we'd have to catch in a try/catch
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, 'bunnies');
 
     // payload is {id: 56}
     knex('users').where({id: payload.id}).first().then(function (user) {
       if (user) {
-        res.json({id: user.id, name: user.name})
+        res.json({id: user.id, username: user.username})
       } else {
         res.status(403).json({
           error: "Invalid ID"
