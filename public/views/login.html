@@ -1,11 +1,11 @@
-<form novalidate ng-submit='formSubmit()'>
+<form novalidate ng-submit='loginSubmit()'>
   <fieldset>
     <legend>Login</legend>
 
     <label>Email</label>
-    <input type="text" name='email' ng-model='userForm.email' minlength='5' maxlength="30" required>
+    <input type="text" name='email' ng-model='loginForm.email' minlength='5' maxlength="30" required>
     <label>Password</label>
-    <input type="password" name='password' ng-model='userForm.password' minlength='3' maxlength="20" required>
+    <input type="password" name='password' ng-model='loginForm.password' minlength='3' maxlength="20" required>
     <input type="submit">
 
   </fieldset>

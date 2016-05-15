@@ -150,23 +150,35 @@ router.post('/users/add',function(req,res,next) {
   }
 })
 // login
-// router.post('/login', function(req,res,next){
-//
-//   knex('users')
-//   .where('email', '=', req.body.email.toLowerCase())
-//   .first()
-//   .then(function(response){
-//     if(response && bcrypt.compareSync(req.body.password, response.password)){
-//      req.session.user = response.username;
-//      req.session.id = response.id;
-//      req.session.email= response.email;
-//
-//      res.redirect('/main');
-//     } else {
-//       res.render('login', {errors: 'Invalid username or password'});
-//     }
-//   });
-// });
+router.post('/login', function(req,res,next) {
+
+  knex('users')
+    .where('email', '=', req.body.email.toLowerCase())
+    .first()
+    .then(function(response){
+      if(response && bcrypt.compareSync(req.body.password, response.password)){
+       console.log('user found');
+      //  console.log('from the response promise:', response)
+       const user = response;
+       console.log('user: ',user)
+       const token = jwt.sign( {id:user.id} , 'bunnies');
+       console.log('token',token)
+          res.json({
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          token: token
+          })
+
+      } else {
+        res.json({errors: 'Invalid username or password'});
+      }
+    });
+
+
+})
+
+
 
 // return all usersfrom db
 router.get('/users',function(req,res,next) {

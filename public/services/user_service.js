@@ -8,6 +8,9 @@ angular.module('Pirates')
     },
     addUser: function(user) {
       return $http.post('/api/users/add',user)
+    },
+    loginUser: function(user) {
+      return $http.post('/api/login',user)
     }
     // deletePirate: function(id) {
     //   return $http.delete('/api/pirates/' + id)
