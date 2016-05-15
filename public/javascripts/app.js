@@ -1,6 +1,6 @@
-// (function() {
+(function() {
 
-  // 'use strict';
+  'use strict';
 
   angular.module('Pirates',['ngRoute'])
 
@@ -31,8 +31,21 @@
       controller: 'EditCtrl'
     }).when('/secret', {
       templateUrl: 'views/secret.html',
-      controller: 'PCtrl',
-      requiresLogin: true
+      controller: 'SecretCtrl',
+      requiresLogin: true,
+      resolve: {
+          theUser: function ($http,$log) {
+            return $http.get('/api/users/me')
+              .then(function (response) {
+                $log.info('from resolve',response.data)
+                if(response.data.error) {
+                  return null
+                }
+                return response.data
+              })
+
+          }
+        }
     })
     .when('/signup', {
       templateUrl: 'views/signup.html',
@@ -83,4 +96,4 @@
     })
 
 
-// }());
+}());

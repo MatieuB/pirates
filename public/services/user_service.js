@@ -1,6 +1,7 @@
 angular.module('Pirates')
 .factory('userService', ['$http','$log',function ($http,$log) {
   return {
+
     all: function() {
       return $http.get('/api/users').then(function(response){
         return response.data
@@ -12,19 +13,10 @@ angular.module('Pirates')
     loginUser: function(user) {
       return $http.post('/api/login',user)
     },
-    isLoggedIn: function {
+    isLoggedIn: function() {
       if(localStorage.getItem('token')) {
         return true
       }
     }
-    // deletePirate: function(id) {
-    //   return $http.delete('/api/pirates/' + id)
-    // },
-    // editPirate: function(pirate) {
-    //   return $http.put('/api/edit/pirate/' +pirate.id , pirate)
-    // },
-    // getPirate: function(id) {
-    //   return $http.get('/api/pirate/'+ id)
-    // }
   }
 }])
