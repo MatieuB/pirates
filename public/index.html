@@ -26,10 +26,14 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
   <!-- Instantiate Module -->
   <script src="/javascripts/app.js"></script>
+  <!-- Directives -->
+  <!-- <script src="/javascripts/directives/nav_directive.js"></script> -->
   <!-- Controllers -->
   <script src="/javascripts/controllers/pirate.js"></script>
   <script src="/javascripts/controllers/edit.js"></script>
   <script src="/javascripts/controllers/signup.js"></script>
+  <script src="/javascripts/controllers/login.js"></script>
+  <!-- <script src="/javascripts/controllers/nav_ctrl.js"></script> -->
 
 
   <base href="/">
@@ -41,19 +45,23 @@
   <title>Pirates</title>
 </head>
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
+  <div>
+    <nav  class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
 
-        <a class="btn btn-primary" href="/secret">Secret Pirates</a>
-        <a class="btn btn-primary" href="/">Home</a>
-        <a class="btn btn-primary" href="/signup">Signup</a>
-        <a class="btn btn-primary" href="/login">Log In</a>
+          <a class="btn btn-primary" href="/secret">Secret Pirates</a>
+          <a class="btn btn-primary" href="/">Home</a>
+          <a class="btn btn-primary" href="/signup">Signup</a>
+          <a class="btn btn-primary" href="/login">Log In</a>
+          <button ng-click="logOut()" class='btn btn-primary'>Logout</button>
 
 
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
+
 
 
 

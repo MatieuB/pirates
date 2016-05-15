@@ -1,10 +1,16 @@
 angular.module('Pirates')
-    .controller('PCtrl',function($scope, $log, $http, $rootScope, PiratesService, theUser) {
+    .controller('PCtrl',function($scope, $log, $http, $rootScope, PiratesService, theUser,$location) {
         // $log.info(currentUser)
 
         $scope.user = theUser
         $scope.formData = {}
         $scope.formVisibile = false
+        $rootScope.logOut = function() {
+          $log.info('Logout clicked, PCtrl is working')
+          localStorage.clear();
+          $location.path('/login');
+        }
+
         $scope.showForm = function() {
             return $scope.formVisible = !$scope.formVisible
         }
