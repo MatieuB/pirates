@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('Pirates')
-    .controller('LoginCtrl',['$scope','$log','$http','userService', function($scope,$log,$http,userService) {
+    .controller('LoginCtrl',['$scope','$location','$log','$http','userService', function($scope,$location,$log,$http,userService) {
 
       $scope.loginForm = {}
       $scope.loginSubmit = function($http) {
@@ -14,6 +14,8 @@
           $log.info(response)
           $log.info('login clicked part 2')
           $log.info(response.data)
+          localStorage.setItem('token',response.data.token)
+          $location.path('/')
         })
       }
 
