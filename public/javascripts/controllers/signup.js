@@ -12,9 +12,9 @@ angular.module('Pirates')
     var newUser = angular.copy($scope.userForm);
     $scope.userForm = {};
 
-    userService.addUser(newUser).then(function(newUser){
-      $log.info(newUser)
-      $scope.pirates.unshift(newUser.data[0]);
+    userService.addUser(newUser).then(function(response){
+      $log.info(response.data)
+      localStorage.setItem('token',response.data.token)
     });
 
     userService.all().then(function(users) {

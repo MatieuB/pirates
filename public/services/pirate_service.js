@@ -1,5 +1,5 @@
 angular.module('Pirates')
-.factory('PiratesService', ['$http','$resource','$log',function ($http,$resource,$log) {
+.factory('PiratesService', ['$http','$log',function ($http,$log) {
   return {
     all: function() {
       return $http.get('/api/pirates').then(function(response){
