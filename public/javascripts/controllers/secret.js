@@ -3,7 +3,7 @@ angular.module('Pirates')
   $scope.user = theUser
   $log.info('theUser',theUser)
   if(theUser === null) {
-    $location.path('/');
+    $location.path('/404');
   }
 
   // you have the id in $routeParams.id
