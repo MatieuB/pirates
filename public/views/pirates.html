@@ -1,7 +1,8 @@
 <h1>Pirates</h1>
-<h3>Welcome {{user.username}}</h3>
+<h3>Welcome {{currentUser.username}}</h3>
 <div>
-<form name='pirate_form'  ng-submit="formSubmit()" class='form-group'>
+<button ng-click='showForm()'>Add a Pirate</button>
+<form ng-show="formVisible" name='pirate_form'  ng-submit="formSubmit()" class='form-group'>
   <label for="">Name</label>
   <input name='name' type="text" ng-model="formData.name">
 

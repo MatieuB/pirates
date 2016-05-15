@@ -1,6 +1,11 @@
 angular.module('Pirates')
 .controller('PCtrl',['$scope','$log','$http','$rootScope','PiratesService',function($scope,$log,$http,$rootScope,PiratesService) {
+  // $scope.currentUser = currentUser
   $scope.formData = {}
+  $scope.formVisibile = false
+  $scope.showForm = function() {
+    return $scope.formVisible = !$scope.formVisible
+  }
 
   PiratesService.all().then(function(pirates){
     $scope.pirates = pirates

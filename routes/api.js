@@ -1,16 +1,77 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('knex')(require('../knexfile')['development']);
-var cors = require('cors');
 var app = express();
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
-/* GET home page. */
+// me route
+// router.get('/users/me', function (req, res, next) {
+//   if (req.headers.authorization) {
+//     const token = req.headers.authorization.split(' ')[1];
+//
+//     // IF it was expired - verify would actually throw an exception
+//     // we'd have to catch in a try/catch
+//     const payload = jwt.verify(token, process.env.JWT_SECRET);
+//
+//     // payload is {id: 56}
+//     knex('users').where({id: payload.id}).first().then(function (user) {
+//       if (user) {
+//         res.json({id: user.id, name: user.name})
+//       } else {
+//         res.status(403).json({
+//           error: "Invalid ID"
+//         })
+//       }
+//     })
+//   } else {
+//     res.status(403).json({
+//       error: "No token"
+//     })
+//   }
+// })
 
-router.get('/', function(req, res, next) {
-  res.json( { title: 'Pirates stuff' });
-});
+// router.get('/me',function (req,res,next) {
+//   //√get jwt from auth header
+//   //√ "Bearer ;alsdkjf;adj" || nothing
+//   //√string logic to parse this
+//   //√decode it and find use id
+//   //√return the user object
+//   console.log(req.headers.authorization)
+//   if (req.headers.authorization) {
+//     const token = req.headers.authorization.split(' ')[1]
+//     //if expired, verify would try to catch it in try/catch
+//     try {
+//       const payload = jwt.verify(token , process.env.JWT_SECRET)
+//       //payload is {id: 32} or something
+//       knex('users')
+//         .where({id: payload.id}).first()
+//         .then(function (user) {
+//           if(user) {
+//             res.json({
+//               id: user.id,
+//               name: user.name
+//             })
+//           } else {
+//             res.json({
+//               error:'no user'
+//             })
+//           }
+//
+//         })
+//    catch (e) {
+//       res.json({
+//         error:'no token'
+//       })
+//
+//     }
+//   } else {
+//     res.json({
+//       error:'no token'
+//     })
+//   }
+// })
+
 // return all pirates from db
 router.get('/pirates',function(req,res,next) {
   return knex('pirates')
@@ -43,7 +104,7 @@ router.post('/signup', function(req, res, next) {
   const errors = []
 
   if (!req.body.email || !req.body.email.trim()) errors.push("Email can't be blank");
-  if (!req.body.name || !req.body.name.trim()) errors.push("Name can't be blank");
+  if (!req.body.username || !req.body.username.trim()) errors.push("Name can't be blank");
   if (!req.body.password || !req.body.password.trim()) errors.push("Password can't be blank");
 
   if (errors.length) {
@@ -63,21 +124,21 @@ router.post('/signup', function(req, res, next) {
            knex('users')
             .insert({
               email: req.body.email,
-              name: req.body.name,
-              password_hash: hash
+              username: req.body.username,
+              password: hash
             })
             .returning('*')
             .then(function (users) {
               const user = users[0]
               const token = jwt.sign({id:user.id}, process.env.JWT_SECRET);
+              console.log('token',token);
               res.json({
               id: user.id,
               email: user.email,
-              name: user.name,
+              username: user.username,
               token: token
             })
           })
-
           } else {
           res.status(422).json({
             errors: ["Email has already been taken"]

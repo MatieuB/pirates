@@ -4,7 +4,19 @@ angular.module('Pirates',['ngRoute','ngResource'])
   $routeProvider
   .when('/', {
     templateUrl : 'views/pirates.html',
-    controller: 'PCtrl'
+    controller: 'PCtrl',
+    resolve: {
+        currentUser: function ($http) {
+          return $http.get('/api/users/me')
+            .then(function (response) {
+              if(response.data.error) {
+                return null
+              }
+              return response.data
+            })
+
+        }
+      }
   }).when('/edit/pirate/:id', {
     templateUrl : 'views/edit_pirate.html',
     controller: 'EditCtrl'
