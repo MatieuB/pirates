@@ -1,6 +1,7 @@
 angular.module('Pirates')
-    .controller('PCtrl', ['$scope', '$log', '$http', '$rootScope', 'PiratesService', 'theUser', function($scope, $log, $http, $rootScope, PiratesService, theUser) {
+    .controller('PCtrl',function($scope, $log, $http, $rootScope, PiratesService, theUser) {
         // $log.info(currentUser)
+
         $scope.user = theUser
         $scope.formData = {}
         $scope.formVisibile = false
@@ -44,4 +45,4 @@ angular.module('Pirates')
             })
         }
 
-    }])
+    })

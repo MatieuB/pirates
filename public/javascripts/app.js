@@ -9,6 +9,7 @@
 
     $routeProvider
     .when('/', {
+
       templateUrl: 'views/pirates.html',
       resolve: {
           theUser: function ($http,$log) {
@@ -24,6 +25,7 @@
           }
         },
       controller: 'PCtrl'
+
     }).when('/edit/pirate/:id', {
       templateUrl : 'views/edit_pirate.html',
       controller: 'EditCtrl'
@@ -31,7 +33,8 @@
       templateUrl: 'views/secret.html',
       controller: 'PCtrl',
       requiresLogin: true
-    }).when('/signup', {
+    })
+    .when('/signup', {
       templateUrl: 'views/signup.html',
       controller: 'SignupCtrl'
     })
