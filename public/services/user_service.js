@@ -11,6 +11,11 @@ angular.module('Pirates')
     },
     loginUser: function(user) {
       return $http.post('/api/login',user)
+    },
+    isLoggedIn: function {
+      if(localStorage.getItem('token')) {
+        return true
+      }
     }
     // deletePirate: function(id) {
     //   return $http.delete('/api/pirates/' + id)

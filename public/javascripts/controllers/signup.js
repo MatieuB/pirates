@@ -15,6 +15,7 @@ angular.module('Pirates')
     userService.addUser(newUser).then(function(response){
       $log.info(response.data)
       localStorage.setItem('token',response.data.token)
+      $location.path('/')
     });
 
     userService.all().then(function(users) {
