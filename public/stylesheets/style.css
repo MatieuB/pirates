@@ -6,7 +6,7 @@ body {
   background-repeat:no-repeat;
   background-position: center;
   background-size: cover;
-  /*height: 80vh;*/
+  height: 100vh;
 }
 
 a {
@@ -19,5 +19,8 @@ img {
 .pirateContainer {
   overflow-y: scroll;
   height: 80vh;
+  color:white;
+}
+.view {
   color:white;
 }

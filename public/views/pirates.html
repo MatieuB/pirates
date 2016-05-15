@@ -1,7 +1,7 @@
 <div class='pirateContainer'><h1>Pirates</h1>
   <h3>Welcome {{user.username}}</h3>
   <div>
-  <button ng-click='showForm()'>Add a Pirate</button>
+  <button class="btn btn-defualt" ng-click='showForm()'>Add a Pirate</button>
   <form ng-show="formVisible" name='pirate_form'  ng-submit="formSubmit()" class='form-group'>
     <label for="">Name</label>
     <input name='name' type="text" ng-model="formData.name">
@@ -27,7 +27,7 @@
     <p>poison: {{pirate.poison}}</p>
     <img ng-src="{{pirate.image_url}}" alt="pirate">
 
-    <a href="/edit/pirate/{{pirate.id}}" class="btn btn-primary">Edit this Pirate</a>
+    <a href="/edit/pirate/{{pirate.id}}" class="btn btn-info">Edit this Pirate</a>
     <button ng-click="deletePirate(pirate)" class="btn btn-danger">Walk the Plank</button>
 
 
