@@ -1,38 +1,39 @@
-<h1>Pirates</h1>
-<h3>Welcome {{user.username}}</h3>
-<div>
-<button ng-click='showForm()'>Add a Pirate</button>
-<form ng-show="formVisible" name='pirate_form'  ng-submit="formSubmit()" class='form-group'>
-  <label for="">Name</label>
-  <input name='name' type="text" ng-model="formData.name">
+<div class='pirateContainer'><h1>Pirates</h1>
+  <h3>Welcome {{user.username}}</h3>
+  <div>
+  <button ng-click='showForm()'>Add a Pirate</button>
+  <form ng-show="formVisible" name='pirate_form'  ng-submit="formSubmit()" class='form-group'>
+    <label for="">Name</label>
+    <input name='name' type="text" ng-model="formData.name">
 
-  <label for="">Poison</label>
-  <input name='poison' type="text" ng-model="formData.poison">
+    <label for="">Poison</label>
+    <input name='poison' type="text" ng-model="formData.poison">
 
-  <label for="">Accessory</label>
-  <input name='accessory' type="text" ng-model="formData.accessory">
+    <label for="">Accessory</label>
+    <input name='accessory' type="text" ng-model="formData.accessory">
 
-  <label for="">Image URL</label>
-  <input name='image_url' type="text" ng-model="formData.image_url">
+    <label for="">Image URL</label>
+    <input name='image_url' type="text" ng-model="formData.image_url">
 
-  <input type="submit">
+    <input type="submit">
 
-</form>
-</div>
+  </form>
+  </div>
 
-<div ng-repeat="pirate in pirates track by $index">
+  <div ng-repeat="pirate in pirates track by $index">
 
-  <h3>{{pirate.name}}</h3>
-  <p>accessory: {{pirate.accessory}}</p>
-  <p>poison: {{pirate.poison}}</p>
-  <img ng-src="{{pirate.image_url}}" alt="pirate">
+    <h3>{{pirate.name}}</h3>
+    <p>accessory: {{pirate.accessory}}</p>
+    <p>poison: {{pirate.poison}}</p>
+    <img ng-src="{{pirate.image_url}}" alt="pirate">
 
-  <a href="/edit/pirate/{{pirate.id}}" class="btn btn-primary">Edit this Pirate</a>
-  <button ng-click="deletePirate(pirate)" class="btn btn-danger">Walk the Plank</button>
+    <a href="/edit/pirate/{{pirate.id}}" class="btn btn-primary">Edit this Pirate</a>
+    <button ng-click="deletePirate(pirate)" class="btn btn-danger">Walk the Plank</button>
 
 
-  <p>
-    id: {{pirate.id}}
-  </p>
+    <p>
+      id: {{pirate.id}}
+    </p>
 
-</div>
+  </div>
+  </div>

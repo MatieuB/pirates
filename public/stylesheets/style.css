@@ -1,6 +1,12 @@
 body {
+
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('http://www.fullhdwpp.com/wp-content/uploads/Pirate-Ship-Silhouette_www.FullHDWpp.com_.jpg');
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: cover;
+  /*height: 80vh;*/
 }
 
 a {
@@ -9,4 +15,9 @@ a {
 img {
   width: 250px;
   height: 300px;
+}
+.pirateContainer {
+  overflow-y: scroll;
+  height: 80vh;
+  color:white;
 }
