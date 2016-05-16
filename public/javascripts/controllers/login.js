@@ -11,11 +11,18 @@
         $log.info('loggy: ',  loggy)
 
         userService.loginUser(loggy).then(function(response) {
-          $log.info(response)
-          $log.info('login clicked part 2')
-          $log.info(response.data)
-          localStorage.setItem('token',response.data.token)
-          $location.path('/')
+          $log.info('error=========',response)
+          if (response.status === 200) {
+            $log.info('login clicked part 2')
+            $log.info(response.data)
+            localStorage.setItem('token',response.data.token)
+            $location.path('/')
+          }
+          if(response.status === 403) {
+            $scope.error = response.data
+          }
+
+
         })
       }
 

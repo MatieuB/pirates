@@ -4,6 +4,7 @@ var knex = require('knex')(require('../knexfile')['development']);
 var app = express();
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
+var env = require('dotenv').config()
 
 // me route
 router.get('/users/me', function (req, res, next) {
@@ -12,7 +13,7 @@ router.get('/users/me', function (req, res, next) {
 
     // IF it was expired - verify would actually throw an exception
     // we'd have to catch in a try/catch
-    const payload = jwt.verify(token, 'bunnies');
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
 
     // payload is {id: 56}
     knex('users').where({id: payload.id}).first().then(function (user) {
@@ -131,7 +132,7 @@ router.post('/users/add',function(req,res,next) {
             .then(function (users) {
               console.log('from the promise:',users);
               const user = users[0];
-              const token = jwt.sign( {id:user.id} , 'bunnies');
+              const token = jwt.sign( {id:user.id} , process.env.JWT_SECRET);
               // console.log('token',token)
               res.json({
               id: user.id,
@@ -161,7 +162,7 @@ router.post('/login', function(req,res,next) {
       //  console.log('from the response promise:', response)
        const user = response;
        console.log('user: ',user)
-       const token = jwt.sign( {id:user.id} , 'bunnies');
+       const token = jwt.sign( {id:user.id} , process.env.JWT_SECRET);
        console.log('token',token)
           res.json({
           id: user.id,
@@ -171,7 +172,8 @@ router.post('/login', function(req,res,next) {
           })
 
       } else {
-        res.json({errors: 'Invalid username or password'});
+        res.status(403).send('Invalid username or password')
+        // res.json({errors: 'Invalid username or password'});
       }
     });
 

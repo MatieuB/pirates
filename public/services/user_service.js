@@ -11,12 +11,20 @@ angular.module('Pirates')
       return $http.post('/api/users/add',user)
     },
     loginUser: function(user) {
-      return $http.post('/api/login',user)
+      return $http.post('/api/login',user).then( function (data) {
+        console.log("loginUser", data);
+        return data
+      })
     },
     isLoggedIn: function() {
-      if(localStorage.getItem('token')) {
-        return true
-      }
+      $http.get('/api/users/me')
+        .then(function (response) {
+          $log.info('from resolve',response.data)
+          if(response.data.error) {
+            return false
+          }
+          return true
+        })
     }
   }
 }])

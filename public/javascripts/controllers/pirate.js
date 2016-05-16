@@ -2,7 +2,8 @@ angular.module('Pirates')
     .controller('PCtrl',function($scope, $log, $http, $rootScope, PiratesService, theUser,$location) {
         // $log.info(currentUser)
 
-        $scope.user = theUser
+        $rootScope.user = theUser
+        $log.info('theUSer',theUser)
         $scope.formData = {}
         $scope.formVisibile = false
         $rootScope.logOut = function() {

@@ -12,13 +12,17 @@
 
       templateUrl: 'views/pirates.html',
       resolve: {
-          theUser: function ($http,$log) {
+          theUser: function ($http,$log,$location) {
             return $http.get('/api/users/me')
               .then(function (response) {
                 $log.info('from resolve',response.data)
                 if(response.data.error) {
-                  return null
+                  console.log('state change data error:',response.data.error);
+                  localStorage.clear();
+                  $location.path('/login')
+                  return {message: 'need to login'}
                 }
+                $log.info('response.data: ', response.data)
                 return response.data
               })
 
@@ -56,7 +60,7 @@
       controller: 'LoginCtrl'
     })
     .when('/404', {
-      template:'<h1>404 not found</h1>'
+      template:'<h1>404 not found, need a map?</h1>'
     }).otherwise({
       redirectTo: '/404'
     });
@@ -89,7 +93,7 @@
           return config;
         },
         responseError: function(response) {
-          console.log(response);
+          console.log('from the interceptor: ',response);
           return response;
         }
       };
