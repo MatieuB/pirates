@@ -17,13 +17,11 @@
               .then(function (response) {
                 $log.info('from resolve',response.data)
                 if(response.data.error) {
-                  console.log('state change data error:',response.data.error);
                   localStorage.clear();
                   $location.path('/login')
                   return {message: 'need to login'}
                 }
-                $log.info('response.data: ', response.data)
-                return response.data
+                  return response.data
               })
 
           }

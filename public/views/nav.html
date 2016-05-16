@@ -1,1 +1,16 @@
+<div>
+  <nav  class="navbar ">
+    <div class="container-fluid">
 
+
+        <a class="btn btn-default" href="/secret">Treasure</a>
+        <a class="btn btn-default" href="/">Home</a>
+        <a ng-show='!localStorage.getItem("token")' class="btn btn-default" href="/signup">Signup</a>
+        <a ng-show='!localStorage.getItem("token")' class="btn btn-default" href="/login">Log In</a>
+        <button ng-show='!localStorage.getItem("token")' ng-click="logOut()" class='btn btn-primary'>Logout</button>
+
+
+
+    </div>
+  </nav>
+</div>
